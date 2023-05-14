@@ -19,4 +19,13 @@ tb::tb(const sc_core::sc_module_name &nm): sc_core::sc_module(nm) {
     terminal.tx_o(gpio_s[16].in);
     gpio_s[17].out(terminal.rx_i);
 }
+
+auto tb::setELF(std::string elf) -> void {
+    try {
+        top.loadElfFile(elf);
+    } catch(...) {
+        std::cerr << "ELF file not loaded properly hence can't run simulation";
+        exit(EXIT_FAILURE);
+    }
+}
 }

@@ -17,6 +17,8 @@ namespace tgc_vp {
 class tb : public sc_core::sc_module {
 public:
     tb(sc_core::sc_module_name const& nm);
+    void setELF(std::string elf);
+
     tgc_vp::system top{"top"};
     tgc_vp::rst_gen rst_gen{"rst_gen"};
     sc_core::sc_vector<tlm::scc::tlm_signal<sc_dt::sc_logic>> gpio_s{"gpio_s", 32};

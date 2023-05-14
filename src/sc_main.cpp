@@ -57,10 +57,14 @@ int sc_main(int argc, char *argv[]) {
             static_cast<scc::tracer::file_type>(trace_level >> 1), // bit3-bit1 define the kind of transaction trace
             (trace_level&0x1) != 0, // bit0 enables vcd
             parser.is_set("trace-default-on"));
+
+    auto elf_file_path{parser.get<std::string>("elf")};
+
     ///////////////////////////////////////////////////////////////////////////
     // instantiate top level
     ///////////////////////////////////////////////////////////////////////////
     auto i_system = scc::make_unique<tgc_vp::tb>("tb");
+    i_system->setELF(elf_file_path);
     ///////////////////////////////////////////////////////////////////////////
     // add non-implemented 'enableTracing' properties
     ///////////////////////////////////////////////////////////////////////////
